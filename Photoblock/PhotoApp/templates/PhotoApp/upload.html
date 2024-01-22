@@ -1,0 +1,17 @@
+<!-- myapp/templates/myapp/upload.html -->
+{% extends 'PhotoApp/base.html' %}
+
+{% block title %}Upload Page{% endblock %}
+
+{% block content %}
+    <div class="center-content">
+        <h1>Upload Image</h1>
+        <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="image">Select an image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required><br>
+
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+{% endblock %}
