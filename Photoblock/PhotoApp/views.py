@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 
 # Create your views here.
 
@@ -27,9 +28,9 @@ def registration_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Log the user in after registration
-            return redirect('home')  # Redirect to your home page or another URL
+            login(request, user)
+            return redirect('main')
     else:
         form = UserCreationForm()
 
-    return render(request, 'registration/registration.html', {'form': form})
+    return render(request, 'PhotoApp/registration.html', {'form': form})
