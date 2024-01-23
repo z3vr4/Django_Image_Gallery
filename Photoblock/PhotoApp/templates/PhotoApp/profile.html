@@ -6,6 +6,11 @@
 {% block content %}
     <div class="center-content">
         <h1>Profile</h1>
-        <p>This currently displays nothing too. For now.</p>
+        <p>This currently displays (mostly) nothing too. For now.</p>
+        {% if user.is_authenticated %}
+            <p><a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <p>This message says ur not logged in lul</p>
+        {% endif %}
     </div>
 {% endblock %}
