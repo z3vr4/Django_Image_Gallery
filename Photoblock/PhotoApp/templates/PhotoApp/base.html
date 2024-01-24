@@ -66,6 +66,13 @@
             color: black;
         }
 
+
+        .navbar-logo {
+            float: left;
+            margin-right: 10px;
+            width: 45px;
+            height: auto;
+        }
         /* Classes */
         /* Center style */
         .center-content {
@@ -77,6 +84,7 @@
 </head>
 <body>
     <nav>
+        <img src="https://lh3.googleusercontent.com/a/ACg8ocLcnDLaHNWIMo52EnlmUGy8-uaAK9EoASJFXxo8tl4X_9c=s288-c-no" alt="Logo" class="navbar-logo">
         <a href="{% url 'main' %}">Home</a>
         <a href="{% url 'profile' %}">Profile</a>
         <a href="{% url 'upload' %}">Upload</a>
