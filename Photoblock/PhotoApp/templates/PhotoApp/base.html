@@ -28,25 +28,15 @@
             font-weight: bold;
         }
 
-        nav a:link {
-            float: left;
-            display: block;
+        a:link:not(nav a) {
             color: cyan;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
         }
 
-        nav a:visited {
-            float: left;
-            display: block;
-            color: magenta;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
+        a:visited:not(nav a) {
+            color: rgb(255, 101, 255);
         }
 
-        nav a:hover {
+        a:hover:not(nav a) {
             background-color: #ddd;
             color: black;
         }
@@ -76,7 +66,8 @@
             color: black;
         }
 
-        /* Centering Style */
+        /* Classes */
+        /* Center style */
         .center-content {
             text-align: center;
             margin-top: 50px;

@@ -10,7 +10,8 @@
         {% if user.is_authenticated %}
             <p><a href="{% url 'logout' %}">Logout</a></p>
         {% else %}
-            <p>This message says ur not logged in lul</p>
+            <p>You need to log in to view your profile.</p>
+            <p><a style="color: cyan;" href="{% url 'login_view' %}">Log in</a></p>
         {% endif %}
     </div>
 {% endblock %}
