@@ -1,4 +1,3 @@
-# myapp/urls.py
 from django.urls import path
 from .views import main_view, profile_view, upload_view, registration_view
 from django.contrib.auth.views import LogoutView, LoginView # logout view is built in view, same as Login

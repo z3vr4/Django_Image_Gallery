@@ -6,7 +6,14 @@
     <form method="post" action="{% url 'registration_view' %}">
         {% csrf_token %}
 
-        <!-- Your customized form fields here -->
+        <!-- Your customized form fields here 
+        We should edit the template to ask for this stuff too:
+            - profile image (can be null)
+            - Get creation date (don't ask for it, just get it)
+            - short description (can be null)
+            - social links (can be null)
+        
+        -->
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br>
 
