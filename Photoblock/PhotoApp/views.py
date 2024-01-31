@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from .models import UserProfile
@@ -25,25 +25,30 @@ def upload_view(request):
 # 30/01/2024 - Modified this view. Severely. Should create a UserProfile instance AND create a User instance. Still haven't tested anything. Likely to blow up.
 
 def registration_view(request):
+    form = UserCreationForm(request.POST)
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        print("request confirmed to be POST")
         if form.is_valid():
             # Save User
             user = form.save()
 
             # Create UserProfile instance
-            UserProfile.objects.create(
+            user_profile = UserProfile.objects.create(
                 user=user,
                 profile_image=request.POST.get('profile_image', ''),  # Update with the actual field names
                 short_description=request.POST.get('short_description', ''),
                 social_links=request.POST.get('social_links', ''),
                 creation_date =request.POST.get('creation_date'),
             )
+            print("UserProfile Created:", user_profile)
             # Log the user in (Optional)
-            login(request, user)
+            authenticated_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            if authenticated_user:
+                login(request, authenticated_user)
+                return redirect('main')
 
-            return redirect('main')  # Replace 'main' with your actual redirect URL
     else:
+        print("Form Errors:", form.errors)
         form = UserCreationForm()
 
     return render(request, 'PhotoApp/registration.html', {'form': form})

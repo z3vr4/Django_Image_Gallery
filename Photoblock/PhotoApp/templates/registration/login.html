@@ -4,6 +4,10 @@
 {% block content %}
   <div class="center-content">
     <h2>Login</h2>
+    {% if user.is_authenticated %}
+    <p>You are already logged in. Maybe you wish to log out?</p>
+    <p><a href="{% url 'logout_view' %}">Logout</a></p>
+    {% else %}
     <form method="post" action="{% url 'login_view' %}">
       {% csrf_token %}
 
@@ -13,5 +17,6 @@
     </form>
 
     <p>Don't have an account? <a href="{% url 'registration_view' %}">Register here</a>.</p>
+    {% endif %}
   </div>
 {% endblock %}

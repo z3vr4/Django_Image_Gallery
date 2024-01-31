@@ -130,3 +130,4 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_URL = 'login_view'
+LOGIN_REDIRECT_URL = 'main_view'

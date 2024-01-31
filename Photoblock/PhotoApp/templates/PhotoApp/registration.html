@@ -3,45 +3,52 @@
 {% block content %}
 <div class="center-content">
     <h2>Register</h2>
-    <form method="post" action="{% url 'registration_view' %}">
+    <form method="post" action="{% url 'registration_view' %}" enctype="multipart/form-data">
+
         {% csrf_token %}
 
-        <!-- 
-        We should edit the template to ask for this stuff too:
-            - profile image (can be null)
-            - Get creation date (don't ask for it, just get it)
-            - short description (can be null)
-            - social links (can be null)
-        - 30/01/2024 added fields for the form, still gotta adjust and test, make sure everything lines up with the registration viewç
-        - 30/01/2024 - stop using <br> for the love of christ use CSS
-        -->
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
 
-        <label for="password1">Password:</label>
-        <input type="password" id="password1" name="password1" required><br>
+        <div class="form-group">
+            <label for="password1">Password:</label>
+            <input type="password" id="password1" name="password1" required>
+        </div>
 
-        <label for="password2">Confirm Password:</label>
-        <input type="password" id="password2" name="password2" required><br>
+        <div class="form-group">
+            <label for="password2">Confirm Password:</label>
+            <input type="password" id="password2" name="password2" required>
+        </div>
 
-        <label for="id_profile_image">Profile Image:</label><br>
-        <input type="file" name="profile_image" accept="image/*">
-        <small>Upload a profile image or leave it blank for the default image.</small><br><br>
+        <div class="form-group">
+            <label for="id_profile_image">Profile Image:</label>
+            <input type="file" name="profile_image" accept="image/*">
+            <small>Upload a profile image or leave it blank for the default image.</small>
+        </div>
 
-        <label for="id_short_description">Short Description:</label><br>
-        <textarea name="short_description" rows="4" cols="50" maxlength="255" placeholder="No description"></textarea><br>
+        <div class="form-group">
+            <label for="id_short_description">Short Description:</label>
+            <textarea name="short_description" rows="4" cols="50" maxlength="255" placeholder="No description"></textarea>
+        </div>
 
-        <label for="id_social_links">Social Links:</label><br>
-        <textarea name="social_links" rows="4" cols="50" placeholder="No links provided"></textarea>
+        <div class="form-group">
+            <label for="id_social_links">Social Links:</label>
+            <textarea name="social_links" rows="4" cols="50" placeholder="No links provided"></textarea>
+        </div>
 
         <!-- Hidden date input -->
         <input type="hidden" name="creation_date" value="{{ current_date }}">
 
-        <button type="submit">Register</button>
+        <div class="form-group">
+            <button type="submit">Register</button>
+        </div>
     </form>
 </div>
-
 {% endblock %}

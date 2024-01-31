@@ -8,7 +8,7 @@
         <h1>Profile</h1>
         <p>This currently displays (mostly) nothing too. For now.</p>
         {% if user.is_authenticated %}
-            <p><a href="{% url 'logout' %}">Logout</a></p>
+            <p><a href="{% url 'logout_view' %}">Logout</a></p>
         {% else %}
             <p>You need to log in to view your profile.</p>
             <p><a style="color: cyan;" href="{% url 'login_view' %}">Log in</a></p>
