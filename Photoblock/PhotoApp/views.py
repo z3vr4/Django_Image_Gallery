@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -22,7 +22,8 @@ def upload_view(request):
 #    return render(request, 'PhotoApp/login.html')
 
 
-# 30/01/2024 - Modified this view. Severely. Should create a UserProfile instance AND create a User instance. Still haven't tested anything. Likely to blow up.
+# 30/01/2024 - Modified this view. Severely. Should create a UserProfile instance AND create a User instance.
+# 31/01/2024 - Tested it, blew up some times, fixed it.
 
 def registration_view(request):
     form = UserCreationForm(request.POST)
@@ -53,20 +54,13 @@ def registration_view(request):
 
     return render(request, 'PhotoApp/registration.html', {'form': form})
 
+# User profile detail view
 
+def detail_profile_view(request, username):
+    user_profile = get_object_or_404(UserProfile, user__username=username)
 
+    context = {
+        'user_profile': user_profile,
+    }
 
-# Come back to this to see how it works exactly, okay?
-'''
-def registration_view(request):
-    if request.method == 'POST':
-       form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('main')
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'PhotoApp/registration.html', {'form': form})
-'''
+    return render(request, 'PhotoApp/profiledetail.html', context)

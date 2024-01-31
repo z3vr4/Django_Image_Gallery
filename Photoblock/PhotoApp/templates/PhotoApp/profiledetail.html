@@ -1,0 +1,14 @@
+{% extends 'PhotoApp/base.html' %}
+
+{% block title %}Profile page{% endblock %}
+
+{% block content %}
+    <div class="center-content">
+        <h1>Profile</h1>
+        <h1>{{ user_profile.user.username }}'s Profile</h1>
+        <p>Email: {{ user_profile.user.email }}</p>
+        <p>Description: {{ user_profile.short_description }}</p>
+        <p>Social media: {{ user_profile.social_links }}</p>
+        <p>Creation date: {{ user_profile.creation_date }}</p>
+    </div>
+{% endblock %}

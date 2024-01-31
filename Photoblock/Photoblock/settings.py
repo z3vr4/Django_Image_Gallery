@@ -131,3 +131,6 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_URL = 'login_view'
 LOGIN_REDIRECT_URL = 'main_view'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
