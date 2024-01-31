@@ -11,7 +11,11 @@ def main_view(request):
     return render(request, 'PhotoApp/main.html') # do the html templates and functionalities later.
 
 def profile_view(request):
-    return render(request, 'PhotoApp/profile.html')
+    if request.user.is_authenticated:
+        # User is logged in, redirect to their profile detail page
+        return redirect('detail_profile', username=request.user.username)
+    else:
+        return render(request, 'PhotoApp/profile.html')
 
 def upload_view(request):
     return render(request, 'PhotoApp/upload.html')
