@@ -28,7 +28,7 @@ Currently in development, so really incomplete at the moment, UX not polished.
 ### User Image Uploading Functionality:
 - To be completed
 
-## Image Submission Detail View:
+##3 Image Submission Detail View:
 - To be created
 
 ### HTML/CSS for Main Landing Page:
