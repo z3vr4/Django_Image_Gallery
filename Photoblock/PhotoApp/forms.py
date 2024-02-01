@@ -6,4 +6,4 @@ from .models import ImageSubmission
 class ImageSubmissionForm(forms.ModelForm):
     class Meta:
         model = ImageSubmission
-        fields = ['user', 'image', 'date','description']
+        exclude = ['creation_date']

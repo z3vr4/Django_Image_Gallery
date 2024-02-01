@@ -21,17 +21,19 @@ def profile_view(request):
     else:
         return render(request, 'PhotoApp/profile.html')
 
-def upload_view(request, user):
+def upload_view(request):
     form = ImageSubmissionForm(request.POST, request.FILES)
     if request.method == 'POST':
         print("request confirmed to be POST")
         if form.is_valid():
             # Create ImageSubmission instance
             image_submission = form.save(commit=False)
-            image_submission.user = user  # Assuming 'user' is the currently logged-in user
+            image_submission.user = request.user  # Assuming 'user' is the currently logged-in user
             image_submission.save()
             print("Image Submission Created:", image_submission)
             return redirect('afterupload')
+        else:
+            print('Form was not valid')
     return render(request, 'PhotoApp/upload.html', {'form': form})
 
 

@@ -11,7 +11,7 @@ class UserProfile(models.Model):
 class ImageSubmission(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='image_submissions/')
-    date = models.DateTimeField(auto_now_add=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
 
 class Comment(models.Model):
