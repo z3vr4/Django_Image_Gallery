@@ -1,0 +1,11 @@
+<!-- myapp/templates/myapp/upload.html -->
+{% extends 'PhotoApp/base.html' %}
+
+{% block title %}Upload Page{% endblock %}
+
+{% block content %}
+    <div class="center-content">
+        <h1>You've succesfully uploaded an image!</h1>
+        <p>Go back to <a style="color: cyan;" href="{% url 'main_view' %}">main</a></p>
+    </div>
+{% endblock %}

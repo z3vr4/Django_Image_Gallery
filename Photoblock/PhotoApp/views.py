@@ -11,8 +11,8 @@ from .models import UserProfile, ImageSubmission
 def main_view(request):
     return render(request, 'PhotoApp/main.html') # do the html templates and functionalities later.
 
-def after_upload(request):
-    return render(request, 'PhotoApp/main.html') # do the html templates and functionalities later.
+def afterupload_view(request):
+    return render(request, 'PhotoApp/afterupload.html') # do the html templates and functionalities later.
 
 def profile_view(request):
     if request.user.is_authenticated:
