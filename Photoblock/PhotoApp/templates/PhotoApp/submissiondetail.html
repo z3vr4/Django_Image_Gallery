@@ -1,0 +1,12 @@
+{% extends 'PhotoApp/base.html' %}
+
+{% block title %}Profile page{% endblock %}
+
+{% block content %}
+    <div class="center-content">
+        <img src="{{ image_submission.image.url }}" alt="{{ image_submission.description }}">
+        <p>{{ image_submission.description }}</p>
+        <p>Uploaded by: {{ image_submission.user.user }}</p>
+        <p>Upload Date: {{ image_submission.creation_date|date:"F j, Y H:i" }}</p>
+    </div>
+{% endblock %}

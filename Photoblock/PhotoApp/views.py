@@ -6,13 +6,11 @@ from .forms import ImageSubmissionForm
 from django.contrib.auth.views import LoginView
 from .models import UserProfile, ImageSubmission
 
-# Create your views here.
-
 def main_view(request):
-    return render(request, 'PhotoApp/main.html') # do the html templates and functionalities later.
+    return render(request, 'PhotoApp/main.html')
 
 def afterupload_view(request):
-    return render(request, 'PhotoApp/afterupload.html') # do the html templates and functionalities later.
+    return render(request, 'PhotoApp/afterupload.html')
 
 def profile_view(request):
     if request.user.is_authenticated:
@@ -34,9 +32,6 @@ def upload_view(request):
         form = ImageSubmissionForm()
 
     return render(request, 'PhotoApp/upload.html', {'form': form})
-
-# 30/01/2024 - Modified this view. Severely. Should create a UserProfile instance AND create a User instance.
-# 31/01/2024 - Tested it, blew up some times, fixed it.
 
 def registration_view(request):
     form = UserCreationForm(request.POST)
@@ -77,3 +72,14 @@ def detail_profile_view(request, username):
     }
 
     return render(request, 'PhotoApp/profiledetail.html', context)
+
+# Image submission detail view
+
+def image_submission_detail_view(request, submission_id):
+    image_submission = get_object_or_404(ImageSubmission, id=submission_id)
+
+    context = {
+        'image_submission': image_submission,
+    }
+
+    return render(request, 'PhotoApp/submissiondetail.html', context)

@@ -6,9 +6,19 @@
     <div class="center-content">
         <h1>Profile</h1>
         <h1>{{ user_profile.user.username }}'s Profile</h1>
-        <p>Email: {{ user_profile.user.email }}</p>
+        <p>Email (this doesn't work btw): {{ user_profile.user.email }}</p>
         <p>Description: {{ user_profile.short_description }}</p>
         <p>Social media: {{ user_profile.social_links }}</p>
         <p>Creation date: {{ user_profile.creation_date }}</p>
+        <h3>Image Submissions</h3>
+        <ul>
+            {% for submission in user_profile.imagesubmission_set.all %}
+            <li>
+              <a href="{% url 'image_submission_detail' submission.id %}">
+                {{ submission.id }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
     </div>
 {% endblock %}
