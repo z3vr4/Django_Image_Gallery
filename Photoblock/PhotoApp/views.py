@@ -20,22 +20,20 @@ def profile_view(request):
         return redirect('detail_profile', username=request.user.username)
     else:
         return render(request, 'PhotoApp/profile.html')
-
+    
 def upload_view(request):
-    form = ImageSubmissionForm(request.POST, request.FILES)
     if request.method == 'POST':
-        print("request confirmed to be POST")
+        form = ImageSubmissionForm(request.POST, request.FILES)
         if form.is_valid():
-            # Create ImageSubmission instance
             image_submission = form.save(commit=False)
-            image_submission.user = request.user  # Assuming 'user' is the currently logged-in user
+            if request.user.is_authenticated:
+                image_submission.user = request.user.userprofile
             image_submission.save()
-            print("Image Submission Created:", image_submission)
-            return redirect('afterupload')
-        else:
-            print('Form was not valid')
-    return render(request, 'PhotoApp/upload.html', {'form': form})
+            return redirect('afterupload_view')  # Redirect to your success view
+    else:
+        form = ImageSubmissionForm()
 
+    return render(request, 'PhotoApp/upload.html', {'form': form})
 
 # 30/01/2024 - Modified this view. Severely. Should create a UserProfile instance AND create a User instance.
 # 31/01/2024 - Tested it, blew up some times, fixed it.
