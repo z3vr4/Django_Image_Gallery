@@ -7,7 +7,12 @@ from django.contrib.auth.views import LoginView
 from .models import UserProfile, ImageSubmission
 
 def main_view(request):
-    return render(request, 'PhotoApp/main.html')
+    image_submissions = ImageSubmission.objects.all()
+
+    context = {
+        'image_submissions': image_submissions,
+    }
+    return render(request, 'PhotoApp/main.html', context)
 
 def afterupload_view(request):
     return render(request, 'PhotoApp/afterupload.html')

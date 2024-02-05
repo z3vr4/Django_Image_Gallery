@@ -7,7 +7,7 @@
     <div class="center-content">
         <h1>Upload Image</h1>
         {% if user.is_authenticated %}
-        <h1>Upload Image</h1>
+        <h1>Enter an image to upload below</h1>
         <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
             {% csrf_token %}
             

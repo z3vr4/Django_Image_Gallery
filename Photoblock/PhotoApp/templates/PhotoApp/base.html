@@ -26,6 +26,12 @@
             margin: 0;
         }
 
+        div {
+            background-color: #20267a;
+            padding: 25px;
+            border-radius: 20px;
+        }
+
         h1, h2 {
             font-weight: bold;
         }
@@ -55,10 +61,24 @@
         /* submission image icons */
 
         .submission-image {
-            max-width: 25%; /* Maximum width of the image */
-            height: auto;    /* Allow the height to adjust automatically */
-            display: block;  /* Avoid extra space below the image */
-            margin: 0 auto;   /* Center the image */
+            object-fit: cover;
+            width: 230px;
+            height: 230px;
+        }
+
+        /* Remove list-style dots from <li> elements */
+        ul {
+        list-style: none;  /* Remove list-style dots */
+        padding: 0;        /* Remove default padding for <ul> */
+        display: flex;     /* Use flexbox for the container */
+        flex-wrap: wrap;   /* Allow the items to wrap to the next row */
+        justify-content: space-between; /* Distribute items with space between */
+        }
+        /* Add some margin or padding for spacing between list items */
+        li {
+        flex-basis: calc(25% - 2%); /* Set the initial size for each flex item */
+        margin-bottom: 2%;  /* Adjust as needed for spacing between rows */
+        padding: 5px;
         }
 
         /* Navigation Bar Styles */
