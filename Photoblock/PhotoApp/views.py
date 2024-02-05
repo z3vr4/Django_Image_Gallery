@@ -61,9 +61,9 @@ def registration_view(request):
                 login(request, authenticated_user)
                 return redirect('main')
 
-    else:
-        print("Form Errors:", form.errors)
-        form = UserCreationForm()
+        else:
+            print("Form Errors:", form.errors)
+            form = UserCreationForm()
 
     return render(request, 'PhotoApp/registration.html', {'form': form})
 
