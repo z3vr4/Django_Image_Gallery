@@ -27,8 +27,8 @@
         }
 
         div {
+            min-width: 50%;
             background-color: #20267a;
-            padding: 5px;
             border-radius: 20px;
         }
 
@@ -58,7 +58,12 @@
             margin: 0 auto;
         }
 
-        /* submission image icons */
+        /* classes */
+
+        .bigcontainer {
+            border: 5px solid #333;
+            padding: 15px;
+        }
 
         .submission-image {
             object-fit: cover;
@@ -131,8 +136,7 @@
         <a href="{% url 'login_view' %}">Login</a>
         <!-- Add more links as needed -->
     </nav>
-
-    <div>
+    <div class="bigcontainer">
         {% block content %}{% endblock %}
     </div>
 </body>

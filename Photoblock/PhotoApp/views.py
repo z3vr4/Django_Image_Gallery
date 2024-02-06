@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ImageSubmissionForm
+from .forms import ImageSubmissionForm, UserProfileForm
 from django.contrib.auth.views import LoginView
 from .models import UserProfile, ImageSubmission
 
@@ -40,23 +40,22 @@ def upload_view(request):
 
 def registration_view(request):
     form = UserCreationForm(request.POST)
+
     if request.method == 'POST':
-        print("request confirmed to be POST")
-        if form.is_valid():
-            # Save User
-            user = form.save()
+        user_form = UserCreationForm(request.POST)
+        profile_form = UserProfileForm(request.POST, request.FILES)
+        
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
 
             # Create UserProfile instance
-            user_profile = UserProfile.objects.create(
-                user=user,
-                profile_image=request.POST.get('profile_image', ''),
-                short_description=request.POST.get('short_description', ''),
-                social_links=request.POST.get('social_links', ''),
-                creation_date =request.POST.get('creation_date'),
-            )
-            print("UserProfile Created:", user_profile)
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            print("UserProfile Created:", profile)
             # Log the user in
-            authenticated_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            authenticated_user = authenticate(username=user.username, password=request.POST['password1'])
             if authenticated_user:
                 login(request, authenticated_user)
                 return redirect('main')
