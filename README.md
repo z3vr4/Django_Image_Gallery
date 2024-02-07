@@ -26,10 +26,12 @@ Currently in development, so really incomplete at the moment, UX not polished.
 - ✔️ Testing completed
 
 ### User Image Uploading Functionality:
-- To be completed
+- ✔️ Initial uploading functionality
+- ✔️ Testing completed
 
-##3 Image Submission Detail View:
-- To be created
+### Image Submission Detail View:
+- ✔️ Build submission detail view
+- ✔️ Testing completed
 
 ### HTML/CSS for Main Landing Page:
 - To be created
