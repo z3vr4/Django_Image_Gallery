@@ -86,4 +86,19 @@ def image_submission_detail_view(request, submission_id):
         'image_submission': image_submission,
     }
 
+    if request.method == 'POST':
+            pass
+    """
+        form = ImageSubmissionForm(request.POST, request.FILES)
+        if form.is_valid():
+            image_submission = form.save(commit=False)
+            if request.user.is_authenticated:
+                image_submission.user = request.user.userprofile
+            image_submission.save()
+            return redirect('afterupload_view')  # Redirect to your success view
+            """
+    else:
+        pass
+        # form = ImageSubmissionForm()
+
     return render(request, 'PhotoApp/submissiondetail.html', context)
