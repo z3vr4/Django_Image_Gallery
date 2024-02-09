@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ImageSubmissionForm, UserProfileForm
+from .forms import ImageSubmissionForm, UserProfileForm, CommentForm
 from django.contrib.auth.views import LoginView
-from .models import UserProfile, ImageSubmission
+from .models import UserProfile, ImageSubmission, Comment
 
 def main_view(request):
     image_submissions = ImageSubmission.objects.all()
@@ -81,24 +81,23 @@ def detail_profile_view(request, username):
 
 def image_submission_detail_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
+    # figure out how to load the comments for a specific image, then pass them along to the context dictionary
+    # image_comments = 
 
     context = {
         'image_submission': image_submission,
     }
 
     if request.method == 'POST':
-            pass
-    """
-        form = ImageSubmissionForm(request.POST, request.FILES)
-        if form.is_valid():
-            image_submission = form.save(commit=False)
-            if request.user.is_authenticated:
-                image_submission.user = request.user.userprofile
-            image_submission.save()
-            return redirect('afterupload_view')  # Redirect to your success view
-            """
+        if request.user.is_authenticated:
+            image_submission.user = request.user.userprofile
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+
+                comment.save()
+                return render(request, 'PhotoApp/submissiondetail.html', context)  #This should redirect to the same page, but reloaded so the comment loads.
     else:
-        pass
-        # form = ImageSubmissionForm()
+        form = CommentForm()
 
     return render(request, 'PhotoApp/submissiondetail.html', context)
