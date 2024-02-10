@@ -9,4 +9,25 @@
         <p>Uploaded by: {{ image_submission.user.user }}</p>
         <p>Upload Date: {{ image_submission.creation_date|date:"F j, Y H:i" }}</p>
     </div>
+    <div class="center-content">
+        <h2 style="padding: 0px; font-size: 50px">Comments</h2>
+
+        {% if user.is_authenticated %}
+            <!-- Display form to post comments here -->
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Post Comment</button>
+              </form>
+        {% else %}
+            <!-- Ask the user to log in if they want to post comments -->
+            <p>You need to log in to post comments.</p>
+            <p><a style="color: cyan;" href="{% url 'login_view' %}">Log in</a></p>
+        {% endif %}
+            <ul>
+                {% for comment in image_comments %}
+                  <li>{{ comment.text }}</li>
+                {% endfor %}
+              </ul>
+    </div>
 {% endblock %}

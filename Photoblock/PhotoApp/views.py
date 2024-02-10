@@ -82,22 +82,24 @@ def detail_profile_view(request, username):
 def image_submission_detail_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
     # figure out how to load the comments for a specific image, then pass them along to the context dictionary
-    # image_comments = 
+    image_comments = Comment.objects.filter(image_submission=image_submission)
 
     context = {
         'image_submission': image_submission,
+        'image_comments' : image_comments,
     }
 
     if request.method == 'POST':
         if request.user.is_authenticated:
-            image_submission.user = request.user.userprofile
             form = CommentForm(request.POST)
             if form.is_valid():
                 comment = form.save(commit=False)
-
+                comment.user = request.user.userprofile
+                comment.image_submission = image_submission
                 comment.save()
                 return render(request, 'PhotoApp/submissiondetail.html', context)  #This should redirect to the same page, but reloaded so the comment loads.
     else:
         form = CommentForm()
 
+    context['form'] = form
     return render(request, 'PhotoApp/submissiondetail.html', context)
