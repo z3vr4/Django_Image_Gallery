@@ -11,9 +11,9 @@
         <p>Social media: {{ user_profile.social_links }}</p>
         <p>Creation date: {{ user_profile.creation_date }}</p>
         <h3>Image Submissions</h3>
-        <ul>
+        <ul class = "grid-ul">
             {% for submission in user_profile.imagesubmission_set.all %}
-            <li>
+            <li class = "grid-li">
               <div class="square-image-container">
               <a href="{% url 'image_submission_detail' submission.id %}">
                 <img src="{{ submission.image.url }}" alt="{{ submission.title }}" class="submission-image">

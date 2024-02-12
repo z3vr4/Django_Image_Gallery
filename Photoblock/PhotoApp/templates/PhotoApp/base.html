@@ -14,6 +14,11 @@
         
         */
 
+        ul {
+        list-style: none;  /* Remove list-style dots */
+        padding: 0;        /* Remove default padding for <ul> */
+        }
+
         body {
             background-color: #2D34A3;
             color: white;
@@ -48,6 +53,11 @@
             background-color: #ddd;
             color: black;
         }
+
+        a:hover img { /* Make images that work as anchor tags bigger when hovered */
+            transform: scale(1.1);
+        }
+
         /* Forms */
         .form-group {
             margin-bottom: 20px;
@@ -71,20 +81,53 @@
             height: 230px;
         }
 
+        .center-content {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+
+        /* GRID DISPLAY STUFF */
         /* Remove list-style dots from <li> elements */
-        ul {
-        list-style: none;  /* Remove list-style dots */
-        padding: 0;        /* Remove default padding for <ul> */
+        .grid-ul {
         display: flex;     /* Use flexbox for the container */
         flex-wrap: wrap;   /* Allow the items to wrap to the next row */
         justify-content: space-between; /* Distribute items with space between */
         }
         /* Add some margin or padding for spacing between list items */
-        li {
+        .grid-li {
         flex-basis: calc(25% - 2%); /* Set the initial size for each flex item */
         margin-bottom: 2%;  /* Adjust as needed for spacing between rows */
         padding: 5px;
         }
+
+        /* Comment section css */
+
+        .comment-list {
+            list-style-type: none;
+        }
+
+        .comment-item {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            margin-bottom: 10px; /* Adjust spacing between comments */
+        }
+
+        .comment-content {
+            display: flex;
+            align-items: center; /* Align items vertically */
+        }
+
+        .profile-icon {
+            width: 50px; /* Adjust as needed */
+            height: auto;
+            margin-right: 0px; /* Adjust spacing between profile icon and text */
+        }
+
+        .comment-text {
+            flex-grow: 1; /* Allow text to grow to fill available space */
+        }
+
 
         /* Navigation Bar Styles */
         nav {
@@ -116,12 +159,6 @@
             margin-right: 10px;
             width: 45px;
             height: auto;
-        }
-        /* Classes */
-        /* Center style */
-        .center-content {
-            text-align: center;
-            margin-top: 50px;
         }
 
     </style>

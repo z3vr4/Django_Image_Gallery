@@ -81,7 +81,6 @@ def detail_profile_view(request, username):
 
 def image_submission_detail_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
-    # figure out how to load the comments for a specific image, then pass them along to the context dictionary
     image_comments = Comment.objects.filter(image_submission=image_submission)
 
     context = {
