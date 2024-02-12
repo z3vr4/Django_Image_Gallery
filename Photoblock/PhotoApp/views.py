@@ -83,22 +83,24 @@ def image_submission_detail_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
     image_comments = Comment.objects.filter(image_submission=image_submission)
 
-    context = {
-        'image_submission': image_submission,
-        'image_comments' : image_comments,
-    }
-
+    # Initialize the form with or without request.POST data
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            form = CommentForm(request.POST)
-            if form.is_valid():
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            if request.user.is_authenticated:
                 comment = form.save(commit=False)
                 comment.user = request.user.userprofile
                 comment.image_submission = image_submission
                 comment.save()
-                return render(request, 'PhotoApp/submissiondetail.html', context)  #This should redirect to the same page, but reloaded so the comment loads.
+                # Redirect after successful comment submission to prevent form resubmission
+                return redirect('image_submission_detail', submission_id=submission_id)
     else:
         form = CommentForm()
 
-    context['form'] = form
+    context = {
+        'image_submission': image_submission,
+        'image_comments': image_comments,
+        'form': form, 
+    }
+
     return render(request, 'PhotoApp/submissiondetail.html', context)
