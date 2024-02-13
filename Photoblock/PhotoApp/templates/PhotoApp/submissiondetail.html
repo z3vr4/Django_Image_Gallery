@@ -3,7 +3,7 @@
 {% block title %}Profile page{% endblock %}
 
 {% block content %}
-    <div class="center-content">
+    <div class="center-horizontal">
         <img class ="submission-image" src="{{ image_submission.image.url }}" alt="{{ image_submission.description }}">
         <p>{{ image_submission.description }}</p>
         <p>Uploaded by: <a href="{% url 'detail_profile' image_submission.user.user %}">{{ image_submission.user.user }}</a></p>
@@ -22,7 +22,7 @@
         {% else %}
             <!-- Ask the user to log in if they want to post comments -->
             <p>You need to log in to post comments.</p>
-            <p><a style="color: cyan;" href="{% url 'login_view' %}">Log in</a></p>
+            <p><a href="{% url 'login_view' %}">Log in</a></p>
         {% endif %}
         <ul class="comment-list">
             {% for comment in image_comments %}

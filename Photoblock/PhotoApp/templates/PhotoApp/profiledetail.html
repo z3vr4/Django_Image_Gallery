@@ -3,7 +3,7 @@
 {% block title %}Profile page{% endblock %}
 
 {% block content %}
-    <div class="center-content">
+    <div class="center-horizontal">
         <h1>Profile</h1>
         <h1>{{ user_profile.user.username }}'s Profile</h1>
         <img src="{{ user_profile.profile_image.url }}">
@@ -11,16 +11,14 @@
         <p>Social media: {{ user_profile.social_links }}</p>
         <p>Creation date: {{ user_profile.creation_date }}</p>
         <h3>Image Submissions</h3>
-        <ul class = "grid-ul">
-            {% for submission in user_profile.imagesubmission_set.all %}
-            <li class = "grid-li">
-              <div class="square-image-container">
-              <a href="{% url 'image_submission_detail' submission.id %}">
-                <img src="{{ submission.image.url }}" alt="{{ submission.title }}" class="submission-image">
+        <div class="gallery">
+          {% for submission in user_profile.imagesubmission_set.all %}
+              <a href="{% url 'image_submission_detail' submission.id %}" class="grid-li">
+                  <div class="square-image-container">
+                      <img src="{{ submission.image.url }}" alt="{{ submission.description }}" class="submission-image">
+                  </div>
               </a>
-            </div>
-            </li>
           {% endfor %}
-        </ul>
+      </div>
     </div>
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block title %}Upload Page{% endblock %}
 
 {% block content %}
-    <div class="center-content">
+    <div class="center-horizontal">
         <h1>Upload Image</h1>
         {% if user.is_authenticated %}
         <h1>Enter an image to upload below</h1>
@@ -20,7 +20,7 @@
 
         {% else %}
         <p>You need to log in to upload images.</p>
-        <p><a style="color: cyan;" href="{% url 'login_view' %}">Log in</a></p>
+        <p><a href="{% url 'login_view' %}">Log in</a></p>
     {% endif %}
     </div>
 {% endblock %}
