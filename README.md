@@ -37,10 +37,13 @@ Currently in development, so really incomplete at the moment, UX not polished.
 - To be created
 
 ### Comment Functionality for Image Detail Views:
-- To be created
+- ✔️ Build basic comment functionality
+- ✔️ Testing completed
+- Make it look decent
 
 ### Main Testing, Polishing, Reassess Project Status:
 - TBD
+- Maybe implement a pagination feature or a search functionality some time in the future.
 
 
 
