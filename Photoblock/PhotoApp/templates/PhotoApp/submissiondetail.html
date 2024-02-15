@@ -3,20 +3,24 @@
 {% block title %}Profile page{% endblock %}
 
 {% block content %}
-    <div class="center-horizontal">
+<div class="center-horizontal">
         <img class ="submission-image" src="{{ image_submission.image.url }}" alt="{{ image_submission.description }}">
         <p>{{ image_submission.description }}</p>
         <p>Uploaded by: <a href="{% url 'detail_profile' image_submission.user.user %}">{{ image_submission.user.user }}</a></p>
         <p>Upload Date: {{ image_submission.creation_date|date:"F j, Y H:i" }}</p>
-    </div>
-    <div class="center-horizontal">
+</div>
+<!--Comment section form stuff  -->
+<div class="center-horizontal">
+    <div class="comment-section" >
         <h2 style="padding: 0px; font-size: 50px">Comments</h2>
-
+    </div>
     {% if user.is_authenticated %}
         <!-- Display form to post comments here -->
+        <h1>Write a comment here</h1>
         <form method="post" class="comment-form">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.text }}
+            <br>
             <button type="submit">Post Comment</button>
         </form>
     {% else %}
@@ -24,7 +28,12 @@
         <p>You need to log in to post comments.</p>
         <p><a href="{% url 'login_view' %}">Log in</a></p>
     {% endif %}
-    <div class="center-horizontal">
+</div> 
+<!-- Display comments stuff 
+    note: make renderer say if there are no comments
+-->        
+<div class="center-horizontal">
+    <div class="comment-section">
     <ul class="comment-list">
         {% for comment in image_comments %}
             <li class="comment-item">
