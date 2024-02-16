@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Website{% endblock %}</title>
     <style>
-        /* New css code here */
+/* New css code here */
         html {
             background-color: #eeeeee;
         }
@@ -17,15 +17,25 @@
         }
 
 /* Classes */
-    /*Cosmetic-container*/
+    /*Gray containers*/
+    .gray-container {
+            width: 60%; /* Adjust as needed */
+            background-color: #dddddd; /* Background color of the container */
+            border: 6px solid #707070;
+            border-radius: 25px;
+            padding: 20px; /* Adjust padding as needed */
+            display: inline-block; /* Prevents block-level element behavior */
+            margin: 20px;
+        }
 
     /*Separation from navbar*/
         .bigcontainer {
             margin-top: 90px; /* Adjust as needed */
         }
-    /*Center divs*/
+    /*Align to center*/
         .center-horizontal {
-            text-align: center;
+    text-align: center; /* Horizontally center the container */
+    align-items: center; /* Vertically center the container */
         }
 
 /*Grid stuff*/
@@ -40,7 +50,7 @@
         padding: 20px 10px;
         }
 
-    /* Image styles */
+    /* Grid Image styles */
         .gallery img {
         width: 230px;
         height: 230px;
@@ -51,7 +61,26 @@
         a:hover img {
     transform: scale(1.1);
     }
+
+/*IMAGE DETAIL VIEW*/
+/* Submission image styles */
+    .submission-image{
+            max-width: 50%; /* Limit the maximum width of the image to fit its container */
+            max-height: 50%; /* Limit the maximum height of the image to fit its container */
+        }    
 /* Comment sections for image detail views*/
+    /*Comment-container*/
+        .comment-container {
+            width: 30%; /* Adjust as needed */
+            background-color: #dddddd; /* Background color of the container */
+            border: 6px solid #707070;
+            border-radius: 25px;
+            padding: 25px; /* Adjust padding as needed */
+            margin-bottom: 50px;
+            display: inline-block; /* Prevents block-level element behavior */
+            text-align: left; /* Left align the content inside the container */
+        }
+
         .comment-section {
             margin-bottom: 20px; /* Add some space between comment sections */
             width: 100%; /* Ensure the section spans the full width */
@@ -94,6 +123,36 @@
             object-fit: cover; /* Ensure the entire image is visible */
         }
 
+/*PROFILE DETAIL VIEW*/
+.profile-image-container {
+            width: 350px; /* Adjust as needed */
+            height: 350px; /* Adjust as needed */
+            overflow: hidden;
+            border-radius: 50%; /* Make it a circle */
+            margin-right: 10px;
+            display: inline-block; /* Align with text */
+            vertical-align: middle; /* Align vertically with text */
+        }
+.profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the entire image is visible */
+        }        
+
+/*REGISTRATION VIEW*/
+.registration-button {
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #d3d3d3; /* Gray background color */
+    border-radius: 10px; /* Rounded borders */
+    font-weight: bold; /* Bold text */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+}
+
+.registration-button:hover {
+    background-color: #000000; /* Black background color on hover */
+    color: #ffffff; /* White text color on hover */
+}
 
 /* Change anchor tag colors */
         a:link:not(nav a) {
@@ -120,11 +179,13 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         nav a:hover {
             background-color: #ddd;
             color: black;
+            font-weight:bold;
         }
 
 

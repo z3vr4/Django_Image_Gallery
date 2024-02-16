@@ -3,6 +3,7 @@
 
 {% block content %}
   <div class="center-horizontal">
+    <div class="gray-container">
     <h2 style="padding: 0px; font-size: 50px">Login</h2>
     {% if user.is_authenticated %}
     <p>You are already logged in. Maybe you wish to log out?</p>
@@ -19,4 +20,5 @@
     <p>Don't have an account? <a href="{% url 'registration_view' %}">Register here</a>.</p>
     {% endif %}
   </div>
+</div>
 {% endblock %}

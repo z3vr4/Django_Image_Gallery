@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="center-horizontal">
+    <div class="gray-container">
     <h1>Welcome to the Main Page!</h1>
     <p>This page currently displays images users have submitted to the database.<br>
     In the future, this should display a grid of images or whatever. Probably.</p>
@@ -12,11 +13,12 @@
         {% for submission in image_submissions %}
             <a href="{% url 'image_submission_detail' submission.id %}" class="grid-li">
                 <div class="square-image-container">
-                    <img src="{{ submission.image.url }}" alt="{{ submission.description }}" class="submission-image">
+                    <img src="{{ submission.image.url }}" alt="{{ submission.description }}">
                 </div>
             </a>
         {% endfor %}
     </div>
+</div>
 </div>
     <!-- Add your main content here -->
 {% endblock %}

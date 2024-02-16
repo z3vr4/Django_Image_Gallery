@@ -1,54 +1,57 @@
 {% extends 'PhotoApp/base.html' %}
 
 {% block content %}
-<div class="center-content">
-    <h2>Register</h2>
+<div class="center-horizontal">
+    <h1>Register</h1>
     <form method="post" action="{% url 'registration_view' %}" enctype="multipart/form-data">
 
         {% csrf_token %}
-
+        <div class="comment-container">
         <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required>
         </div>
 
         <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" required>
         </div>
 
         <div class="form-group">
-            <label for="password1">Password:</label>
+            <label for="password1">Password:</label><br>
             <input type="password" id="password1" name="password1" required>
         </div>
 
         <div class="form-group">
-            <label for="password2">Confirm Password:</label>
+            <label for="password2">Confirm Password:</label><br>
             <input type="password" id="password2" name="password2" required>
         </div>
 
         <div class="form-group">
-            <label for="id_profile_image">Profile Image:</label>
-            <input type="file" name="profile_image" accept="image/*">
+            <label for="id_profile_image">Profile Image:</label><br>
+            <input type="file" name="profile_image" accept="image/*"><br>
             <small>Upload a profile image or leave it blank for the default image.</small>
         </div>
 
         <div class="form-group">
-            <label for="id_short_description">Short Description:</label>
+            <label for="id_short_description">Short Description:</label><br>
             <textarea name="short_description" rows="4" cols="50" maxlength="255" placeholder="No description"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="id_social_links">Social Links:</label>
+            <label for="id_social_links">Social Links:</label><br>
             <textarea name="social_links" rows="4" cols="50" placeholder="No links provided"></textarea>
         </div>
-
+    </div>
         <!-- Hidden date input -->
         <input type="hidden" name="creation_date" value="{{ current_date }}">
-
-        <div class="form-group">
-            <button type="submit">Register</button>
+        <br>
+        <div class="center-horizontal">
+            <div class="form-group">
+                <button type="submit" class="registration-button">Register</button>
+            </div>
         </div>
     </form>
+
 </div>
 {% endblock %}
