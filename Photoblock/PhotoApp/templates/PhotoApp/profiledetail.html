@@ -15,7 +15,14 @@
             <p>Creation date: {{ user_profile.creation_date }}</p>
         </div>
     </div>
+
+    <div class="center-horizontal">
+        {% if user.is_authenticated and user == user_profile.user %}
+            <a class="edit-button" href="{% url 'edit_profile' user_profile.user %}">Edit Profile</a>
+        {% endif %}
+        </div>
     <div class="gray-container">
+
     <h3>Image Submissions</h3>
     <div class="gallery">
       {% for submission in user_profile.imagesubmission_set.all %}

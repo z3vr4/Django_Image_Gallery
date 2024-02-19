@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import ImageSubmissionForm, UserProfileForm, CommentForm
 from django.contrib.auth.views import LoginView
 from .models import UserProfile, ImageSubmission, Comment
+from django.contrib.auth.decorators import login_required
 
 # MAIN GRID OF STUFF
 
@@ -115,3 +116,13 @@ def image_submission_detail_view(request, submission_id):
 
     return render(request, 'PhotoApp/submissiondetail.html', context)
 
+# Profile edit view
+@login_required
+def edit_profile_view(request, username):
+    user_profile = get_object_or_404(UserProfile, user__username=username)
+
+    context = {
+        'user_profile': user_profile,
+    }
+
+    return render(request, 'PhotoApp/editprofile.html', context)
