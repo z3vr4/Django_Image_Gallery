@@ -19,7 +19,7 @@ Currently in development, so really incomplete at the moment, UX not polished.
 - ✔️ Register models with Django Admin
 
 ### HTML/CSS Review and Refurbish:
-- To be reviewed and adjusted based on new requirements (right now is functional, making it look better comes later).
+- ✔️ Looks decent enough. Will probably implement bootstrap or whatever in the future.
 
 ### User Login Functionality:
 - ✔️ Initial login functionality
@@ -34,15 +34,21 @@ Currently in development, so really incomplete at the moment, UX not polished.
 - ✔️ Testing completed
 
 ### HTML/CSS for Main Landing Page:
-- To be created
+- ✔️ Done. Will improve it in the future.
 
 ### Comment Functionality for Image Detail Views:
 - ✔️ Build basic comment functionality
 - ✔️ Testing completed
-- Make it look decent
+- ✔️ Isn't blindingly ugly anymore.
+  
+### Edit Profile and Image Submission Functionality
+- In development, currently set up the view and url paths to build the functionality on top of it.
+
+### Model reconfiguration, search functionality
+- TBD later
 
 ### Main Testing, Polishing, Reassess Project Status:
-- TBD
+- This is a constant step
 - Maybe implement a pagination feature or a search functionality some time in the future.
 
 
@@ -55,3 +61,4 @@ Currently in development, so really incomplete at the moment, UX not polished.
 
 # Acknowledgements:
 - Chatgpt (wrote most of the html / css, I mainly focused on the technical aspects of this app, not the visuals)
+- freeCodeCamp (most of the CSS for the image grid display I got from the mini project in the HTML/CSS course, remodeled a bit to work with the django setup)
