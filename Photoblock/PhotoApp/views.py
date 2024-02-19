@@ -6,6 +6,8 @@ from .forms import ImageSubmissionForm, UserProfileForm, CommentForm
 from django.contrib.auth.views import LoginView
 from .models import UserProfile, ImageSubmission, Comment
 
+# MAIN GRID OF STUFF
+
 def main_view(request):
     image_submissions = ImageSubmission.objects.all()
 
@@ -14,8 +16,12 @@ def main_view(request):
     }
     return render(request, 'PhotoApp/main.html', context)
 
+# FEEDBACK AFTER SUCCESFUL UPLOAD.
+
 def afterupload_view(request):
     return render(request, 'PhotoApp/afterupload.html')
+
+# PROFILE VIEW (for navbar "profile" button) (redirects if logged in)
 
 def profile_view(request):
     if request.user.is_authenticated:
@@ -23,7 +29,9 @@ def profile_view(request):
         return redirect('detail_profile', username=request.user.username)
     else:
         return render(request, 'PhotoApp/profile.html')
-    
+
+# UPLOAD STUFF VIEW
+
 def upload_view(request):
     if request.method == 'POST':
         form = ImageSubmissionForm(request.POST, request.FILES)
@@ -37,6 +45,8 @@ def upload_view(request):
         form = ImageSubmissionForm()
 
     return render(request, 'PhotoApp/upload.html', {'form': form})
+
+# REGISTRATION VIEW
 
 def registration_view(request):
     form = UserCreationForm(request.POST)
@@ -66,7 +76,7 @@ def registration_view(request):
 
     return render(request, 'PhotoApp/registration.html', {'form': form})
 
-# User profile detail view
+# USER PROFILE DETAIL VIEW
 
 def detail_profile_view(request, username):
     user_profile = get_object_or_404(UserProfile, user__username=username)
@@ -77,7 +87,7 @@ def detail_profile_view(request, username):
 
     return render(request, 'PhotoApp/profiledetail.html', context)
 
-# Image submission detail view
+# IMAGE SUBMISSION VIEW (Detail view)
 
 def image_submission_detail_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
@@ -104,3 +114,4 @@ def image_submission_detail_view(request, submission_id):
     }
 
     return render(request, 'PhotoApp/submissiondetail.html', context)
+

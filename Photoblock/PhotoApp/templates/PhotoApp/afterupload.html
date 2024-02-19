@@ -4,8 +4,20 @@
 {% block title %}Upload Page{% endblock %}
 
 {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>After Upload</title>
+    <script>
+        setTimeout(function() {
+            window.location.href = "{% url 'main' %}";
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
+</head>
+<body>
     <div class="center-horizontal">
-        <h1>You've succesfully uploaded an image!</h1>
-        <p>Go back to <a style="color: cyan;" href="{% url 'main' %}">main</a></p>
+        <h1>You've successfully uploaded an image!</h1>
+        <p>Go back to <a href="{% url 'main' %}">main</a></p>
+        <p>(You will be redirected to main in 5 seconds anyway)</p>
     </div>
+</body>
 {% endblock %}
