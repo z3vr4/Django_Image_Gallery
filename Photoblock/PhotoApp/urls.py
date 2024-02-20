@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import main_view, profile_view, upload_view, registration_view, detail_profile_view, afterupload_view, image_submission_detail_view, edit_profile_view
+from .views import main_view, profile_view, upload_view, registration_view, detail_profile_view, afterupload_view, image_submission_detail_view, edit_profile_view, edit_submission_view
 from django.contrib.auth.views import LogoutView, LoginView # logout view is built in view, same as Login
 
 urlpatterns = [
@@ -12,5 +12,6 @@ urlpatterns = [
     path('afterupload/', afterupload_view, name='afterupload_view'),
     path('profile/<str:username>/', detail_profile_view, name='detail_profile'),
     path('submission/<int:submission_id>/', image_submission_detail_view, name='image_submission_detail'),
-    path('profile/<str:username>/edit', edit_profile_view, name='edit_profile')
+    path('profile/<str:username>/edit', edit_profile_view, name='edit_profile'),
+    path('submission/<int:submission_id>/edit', edit_submission_view, name='edit_submission')
 ]

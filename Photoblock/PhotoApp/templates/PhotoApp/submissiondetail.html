@@ -10,6 +10,11 @@
             <p>Uploaded by: <a href="{% url 'detail_profile' image_submission.user.user %}">{{ image_submission.user.user }}</a></p>
             <p>Upload Date: {{ image_submission.creation_date|date:"F j, Y H:i" }}</p>
     </div>
+    {% if user.is_authenticated and user == image_submission.user.user %}
+    <div class="center-horizontal">
+        <a class="edit-button" href="{% url 'edit_submission' image_submission.id %}">Edit Submission</a>
+    </div>
+    {% endif %}
 </div>     
 <!--Comment section form stuff  -->
 <div class="center-horizontal">

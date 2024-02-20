@@ -126,3 +126,15 @@ def edit_profile_view(request, username):
     }
 
     return render(request, 'PhotoApp/editprofile.html', context)
+
+@login_required
+def edit_submission_view(request, submission_id):
+    image_submission = get_object_or_404(ImageSubmission, id=submission_id)
+    image_comments = Comment.objects.filter(image_submission=image_submission)
+
+    context = {
+        'image_submission': image_submission,
+        'image_comments': image_comments,
+    }
+
+    return render(request, 'PhotoApp/editsubmission.html', context)
