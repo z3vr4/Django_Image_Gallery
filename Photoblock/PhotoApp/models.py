@@ -13,6 +13,7 @@ class ImageSubmission(models.Model):
     image = models.ImageField(upload_to='image_submissions/')
     creation_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
+    title = models.CharField(max_length=120, blank=True)
 
 class Comment(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

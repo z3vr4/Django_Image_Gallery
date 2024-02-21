@@ -1,16 +1,22 @@
 {% extends 'PhotoApp/base.html' %}
 
-{% block title %}Profile page{% endblock %}
+{% block title %}Edit Image Submission{% endblock %}
 
 {% block content %}
-<div class="center-horizontal">
-    <div class="gray-container">
-        <h1>THIS IS THE VIEW TO EDIT IMAGE SUBMISSIONS. CURRENTLY IN DEVELOPMENT</h1>
-            <img class ="submission-image" src="{{ image_submission.image.url }}" alt="{{ image_submission.description }}">
-            <p>{{ image_submission.description }}</p>
+    <div class="center-horizontal">
+        <div class="gray-container">
+            <h1>Edit Image Submission</h1>
+            <img class="submission-image" src="{{ image_submission.image.url }}" alt="{{ image_submission.description }}">            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="id_description">Title:</label>
+                {{ image_form.title }}
+                <label for="id_description">Description:</label>
+                {{ image_form.description }}
+                <button type="submit">Save Changes</button>
+            </form>
             <p>Uploaded by: <a href="{% url 'detail_profile' image_submission.user.user %}">{{ image_submission.user.user }}</a></p>
             <p>Upload Date: {{ image_submission.creation_date|date:"F j, Y H:i" }}</p>
+        </div>
     </div>
-</div>     
-
 {% endblock %}

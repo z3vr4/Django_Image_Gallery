@@ -121,20 +121,39 @@ def image_submission_detail_view(request, submission_id):
 def edit_profile_view(request, username):
     user_profile = get_object_or_404(UserProfile, user__username=username)
 
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('detail_profile', username=username)  # Redirect to profile detail view
+    else:
+        profile_form = UserProfileForm(instance=user_profile)
+
     context = {
         'user_profile': user_profile,
+        'profile_form': profile_form
     }
 
     return render(request, 'PhotoApp/editprofile.html', context)
+
 
 @login_required
 def edit_submission_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
     image_comments = Comment.objects.filter(image_submission=image_submission)
 
+    if request.method == 'POST':
+        image_form = ImageSubmissionForm(request.POST, request.FILES, instance=image_submission)
+        if image_form.is_valid():
+            image_form.save()
+            return redirect('image_submission_detail', submission_id=submission_id)  # Redirect to image detail view
+    else:
+        image_form = ImageSubmissionForm(instance=image_submission)
+
     context = {
         'image_submission': image_submission,
         'image_comments': image_comments,
+        'image_form': image_form,
     }
 
     return render(request, 'PhotoApp/editsubmission.html', context)
