@@ -77,7 +77,7 @@ def registration_view(request):
 
     return render(request, 'PhotoApp/registration.html', {'form': form})
 
-# USER PROFILE DETAIL VIEW
+# Profile and image submission detail view
 
 def detail_profile_view(request, username):
     user_profile = get_object_or_404(UserProfile, user__username=username)
@@ -87,8 +87,6 @@ def detail_profile_view(request, username):
     }
 
     return render(request, 'PhotoApp/profiledetail.html', context)
-
-# IMAGE SUBMISSION VIEW (Detail view)
 
 def image_submission_detail_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)
@@ -116,7 +114,7 @@ def image_submission_detail_view(request, submission_id):
 
     return render(request, 'PhotoApp/submissiondetail.html', context)
 
-# Profile edit view
+# Profile and image submission edit view
 @login_required
 def edit_profile_view(request, username):
     user_profile = get_object_or_404(UserProfile, user__username=username)
@@ -135,7 +133,6 @@ def edit_profile_view(request, username):
     }
 
     return render(request, 'PhotoApp/editprofile.html', context)
-
 
 @login_required
 def edit_submission_view(request, submission_id):
@@ -157,3 +154,21 @@ def edit_submission_view(request, submission_id):
     }
 
     return render(request, 'PhotoApp/editsubmission.html', context)
+
+# Image submission and profile deletion views
+
+@login_required
+def delete_submission_view(request, submission_id):
+    image_submission = get_object_or_404(ImageSubmission, id=submission_id)
+    
+    # Ensure that only the owner of the image submission can delete it
+    if image_submission.user.user != request.user:
+        # Redirect to a different view in the future that tells users they're accessing a view they're not authorized to access, or whatever.
+        return redirect('main')
+    
+    if request.method == 'POST':
+        image_submission.delete()
+        return redirect('main')  # Make this redirect to a deletion confirmation view.
+
+    # Render the deletion confirmation (asking you to confirm) page template
+    return render(request, 'PhotoApp/deletesubmission.html', {'image_submission': image_submission})

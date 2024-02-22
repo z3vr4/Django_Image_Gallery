@@ -8,15 +8,25 @@
             <h1>Edit Image Submission</h1>
             <img class="submission-image" src="{{ image_submission.image.url }}" alt="{{ image_submission.description }}">            
             <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <label for="id_description">Title:</label>
-                {{ image_form.title }}
-                <label for="id_description">Description:</label>
-                {{ image_form.description }}
+                <div>
+                    {% csrf_token %}
+                    <label for="id_description">Title:</label>
+                    {{ image_form.title }}
+                </div>
+                <div>
+                    <div>
+                        <label for="id_description">Description:</label>
+                    </div>
+                    {{ image_form.description }}
+                </div>
                 <button type="submit">Save Changes</button>
             </form>
             <p>Uploaded by: <a href="{% url 'detail_profile' image_submission.user.user %}">{{ image_submission.user.user }}</a></p>
             <p>Upload Date: {{ image_submission.creation_date|date:"F j, Y H:i" }}</p>
+
+            <div class="center-horizontal">
+                <a class="edit-button" href="{% url 'delete_submission' image_submission.id %}">Delete Submission</a>
+            </div>    
         </div>
     </div>
 {% endblock %}
