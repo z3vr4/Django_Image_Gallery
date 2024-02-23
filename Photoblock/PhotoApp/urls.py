@@ -13,7 +13,9 @@ urlpatterns = [
     path('profile/<str:username>/', detail_profile_view, name='detail_profile'),
     path('profile/<str:username>/edit', edit_profile_view, name='edit_profile'),
     path('profile/<str:username>/edit/delete', delete_profile_view, name='delete_profile'),
+    path('profiledeleteconfirmation', delete_profile_confirmation, name="delete_profile_confirmation"),
     path('submission/<int:submission_id>/', image_submission_detail_view, name='image_submission_detail'),
     path('submission/<int:submission_id>/edit', edit_submission_view, name='edit_submission'),
-    path('submission/<int:submission_id>/edit/delete', delete_submission_view, name='delete_submission')
+    path('submission/<int:submission_id>/edit/delete', delete_submission_view, name='delete_submission'),
+    path('submissiondeleteconfirmation', delete_submission_confirmation, name="delete_submission_confirmation")
 ]
