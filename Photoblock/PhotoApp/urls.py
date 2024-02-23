@@ -11,8 +11,9 @@ urlpatterns = [
     path('registration/', registration_view, name='registration_view'),
     path('afterupload/', afterupload_view, name='afterupload_view'),
     path('profile/<str:username>/', detail_profile_view, name='detail_profile'),
-    path('submission/<int:submission_id>/', image_submission_detail_view, name='image_submission_detail'),
     path('profile/<str:username>/edit', edit_profile_view, name='edit_profile'),
+    path('profile/<str:username>/edit/delete', delete_profile_view, name='delete_profile'),
+    path('submission/<int:submission_id>/', image_submission_detail_view, name='image_submission_detail'),
     path('submission/<int:submission_id>/edit', edit_submission_view, name='edit_submission'),
     path('submission/<int:submission_id>/edit/delete', delete_submission_view, name='delete_submission')
 ]

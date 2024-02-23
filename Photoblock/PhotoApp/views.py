@@ -172,3 +172,22 @@ def delete_submission_view(request, submission_id):
 
     # Render the deletion confirmation (asking you to confirm) page template
     return render(request, 'PhotoApp/deletesubmission.html', {'image_submission': image_submission})
+
+
+@login_required
+def delete_profile_view(request, username):
+    user_profile = get_object_or_404(UserProfile, user__username=username)
+
+    if user_profile.user != request.user:
+        return redirect('main')
+    
+    if request.method == "POST":
+        user_profile.delete()
+        user_profile.user.delete()
+        return redirect('main')
+    
+    context = {
+        'user_profile' : user_profile
+    }
+    
+    return render(request, 'PhotoApp/deleteprofile.html', context)

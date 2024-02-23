@@ -1,0 +1,37 @@
+{% extends 'PhotoApp/base.html' %}
+
+{% block title %}Profile page{% endblock %}
+
+{% block content %}
+    <div class="center-horizontal">
+        <div class="gray-container">
+            <h1>Delete User Profile?</h1>
+            <h1>{{ user_profile.user.username }}'s profile</h1>
+            <div class="profile-image-container">
+                <img src="{{ user_profile.profile_image.url }}" class="profile-image">
+            </div>
+            <div class="comment-container">
+                <p>About me: {{ user_profile.short_description }}</p>
+                <p>Links: {{ user_profile.social_links }}</p>
+                <p>Creation date: {{ user_profile.creation_date }}</p>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="edit-button">Confirm Deletion</button>
+            <a class="edit-button" href="{% url 'edit_profile' user_profile.user %}">Go back to editing view</a>
+        </form>
+        <div class="gray-container">
+
+
+            <h3>Image Submissions</h3>
+            <div class="gallery">
+            {% for submission in user_profile.imagesubmission_set.all %}
+                <div class="square-image-container">
+                    <img src="{{ submission.image.url }}" alt="{{ submission.description }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="edit-button">Confirm Deletion</button>
-        <a href="{% url 'edit_submission' submission_id=image_submission.id %}">Go back to editing view</a>
+        <a class="edit-button" href="{% url 'edit_submission' submission_id=image_submission.id %}">Go back to editing view</a>
     </form>
 </div>
 </div>    
