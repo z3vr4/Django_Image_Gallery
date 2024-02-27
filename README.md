@@ -42,9 +42,10 @@ Currently in development, so really incomplete at the moment, UX not polished.
 - ✔️ Isn't blindingly ugly anymore.
   
 ### Edit Profile and Image Submission Functionality
-- In development, currently set up the view and url paths to build the functionality on top of it.
+- ✔️ Implemented functionality
+- ✔️ Also added profile and image submission deletion functionality
 
-### Model reconfiguration, search functionality
+### Model reconfiguration, search bar functionality
 - TBD later
 
 ### Main Testing, Polishing, Reassess Project Status:
