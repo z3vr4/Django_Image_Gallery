@@ -15,9 +15,11 @@
 </head>
 <body>
     <div class="center-horizontal">
-        <h1>You've successfully uploaded an image!</h1>
-        <p>You will be redirected to the home page in 5 seconds</p>
-        <p>Go back to <a href="{% url 'main' %}">main</a> now.</p>
+        <div class="gray-container last">
+            <h1>You've successfully uploaded an image!</h1>
+            <p>You will be redirected to the home page in 5 seconds</p>
+            <p>Go back to <a href="{% url 'main' %}">main</a> now.</p>
+        </div>
     </div>
 </body>
 {% endblock %}

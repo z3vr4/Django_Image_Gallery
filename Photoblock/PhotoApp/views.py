@@ -8,7 +8,6 @@ from .models import UserProfile, ImageSubmission, Comment
 from django.contrib.auth.decorators import login_required
 
 # MAIN GRID OF STUFF
-
 def main_view(request):
     image_submissions = ImageSubmission.objects.all()
 
@@ -17,13 +16,8 @@ def main_view(request):
     }
     return render(request, 'PhotoApp/main.html', context)
 
-# FEEDBACK AFTER SUCCESFUL UPLOAD.
-
-def afterupload_view(request):
-    return render(request, 'PhotoApp/afterupload.html')
 
 # PROFILE VIEW (for navbar "profile" button) (redirects if logged in)
-
 def profile_view(request):
     if request.user.is_authenticated:
         # User is logged in, redirect to their profile detail page
@@ -32,7 +26,6 @@ def profile_view(request):
         return render(request, 'PhotoApp/profile.html')
 
 # UPLOAD STUFF VIEW
-
 def upload_view(request):
     if request.method == 'POST':
         form = ImageSubmissionForm(request.POST, request.FILES)
@@ -47,8 +40,15 @@ def upload_view(request):
 
     return render(request, 'PhotoApp/upload.html', {'form': form})
 
-# REGISTRATION VIEW
+# FEEDBACK AFTER SUCCESFUL UPLOAD.
+def afterupload_view(request):
+    return render(request, 'PhotoApp/afterupload.html')
 
+# ABOUT PAGE VIEW
+def about_view(request):
+    return render(request, 'PhotoApp/about.html')
+
+# REGISTRATION VIEW
 def registration_view(request):
     form = UserCreationForm(request.POST)
 
@@ -78,7 +78,6 @@ def registration_view(request):
     return render(request, 'PhotoApp/registration.html', {'form': form})
 
 # Profile and image submission detail view
-
 def detail_profile_view(request, username):
     user_profile = get_object_or_404(UserProfile, user__username=username)
 
@@ -156,7 +155,6 @@ def edit_submission_view(request, submission_id):
     return render(request, 'PhotoApp/editsubmission.html', context)
 
 # Image submission and profile deletion views
-
 @login_required
 def delete_submission_view(request, submission_id):
     image_submission = get_object_or_404(ImageSubmission, id=submission_id)

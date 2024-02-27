@@ -6,7 +6,6 @@
 {% block content %}
     <div class="center-horizontal">
         <h1>Profile</h1>
-        <p>This currently displays (mostly) nothing too. For now.</p>
         {% if user.is_authenticated %}
             <p><a href="{% url 'logout_view' %}">Logout</a></p>
         {% else %}

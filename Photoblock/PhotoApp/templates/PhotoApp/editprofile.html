@@ -23,7 +23,7 @@
                 <a class="edit-button" href="{% url 'delete_profile' user_profile.user %}" >Delete User Profile</a>
             </div>    
         </div>
-        <div class="gray-container">
+        <div class="gray-container last">
             <h3>Image Submissions</h3>
             <div class="gallery">
                 {% for submission in user_profile.imagesubmission_set.all %}

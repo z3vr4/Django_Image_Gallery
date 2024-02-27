@@ -6,7 +6,7 @@
     <form method="post" action="{% url 'registration_view' %}" enctype="multipart/form-data">
 
         {% csrf_token %}
-        <div class="comment-container">
+        <div class="comment-container last">
         <div class="form-group">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required>
