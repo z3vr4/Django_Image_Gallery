@@ -48,10 +48,11 @@ Currently in development, so really incomplete at the moment, UX not polished.
 ### Model reconfiguration, search bar functionality
 - TBD later
 
-### Main Testing, Polishing, Reassess Project Status:
-- This is a constant step
-- Maybe implement a pagination feature or a search functionality some time in the future.
-
+### Possible TBA features
+- Pagination / Infinite scrolling for galleries
+- Display users as a list view
+- Option to change gallery square size
+- Sort and search by image tags/uploader
 
 
 # Installation:
