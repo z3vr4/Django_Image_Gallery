@@ -18,7 +18,7 @@
                         <label for="id_description">Description:</label><br>
                         {{ form.description }}<br>
                         <label for="id_tags">Tags (separated by commas):</label><br>
-                        {{ form.tags }}<br>
+                        <input type="text" id="id_tags" name="tags" value="{{ request.POST.tags }}" maxlength="255" /><br>
                     <div class="form-group">
                         <button type="submit">Upload</button>
                     </div>

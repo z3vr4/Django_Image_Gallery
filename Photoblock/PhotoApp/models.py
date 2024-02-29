@@ -14,7 +14,7 @@ class ImageSubmission(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     title = models.CharField(max_length=120, blank=True)
-    tags = models.ManyToManyField('ImageTag', related_name='image_submissions')
+    tags = models.ManyToManyField('ImageTag', related_name='submission_tags')
 
 class Comment(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
@@ -25,4 +25,4 @@ class Comment(models.Model):
 class ImageTag(models.Model):
     display_tag = models.CharField(max_length=100, unique=True)  # tag name with spaces
     backend_tag = models.CharField(max_length=100, unique=True)  # backend purpose tag name (nospaces)
-    image_submissions = models.ManyToManyField('ImageSubmission', related_name='tags')
+    image_submissions = models.ManyToManyField('ImageSubmission', related_name='image_tags')

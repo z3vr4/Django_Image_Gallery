@@ -4,7 +4,7 @@ from .models import ImageSubmission, UserProfile, Comment
 class ImageSubmissionForm(forms.ModelForm):
     class Meta:
         model = ImageSubmission
-        fields = ['image', 'title' ,'description','tags']
+        fields = ['image', 'title' ,'description']
 
 class UserProfileForm(forms.ModelForm):
     class Meta:

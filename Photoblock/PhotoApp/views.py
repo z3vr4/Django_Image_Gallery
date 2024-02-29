@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_or_create
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -34,7 +34,6 @@ def upload_view(request):
             if request.user.is_authenticated:
                 image_submission.user = request.user.userprofile
             image_submission.save()
-
 
 # This part might need future debugging
             tags_str = form.cleaned_data.get('tags', '')
