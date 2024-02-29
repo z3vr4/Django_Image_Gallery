@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_or_create
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import ImageSubmissionForm, UserProfileForm, CommentForm
 from django.contrib.auth.views import LoginView
-from .models import UserProfile, ImageSubmission, Comment
+from .models import *
 from django.contrib.auth.decorators import login_required
 
 # MAIN GRID OF STUFF
@@ -34,6 +34,23 @@ def upload_view(request):
             if request.user.is_authenticated:
                 image_submission.user = request.user.userprofile
             image_submission.save()
+
+
+# This part might need future debugging
+            tags_str = form.cleaned_data.get('tags', '')
+            tags = [tag.strip().lower() for tag in tags_str.split(',') if tag.strip()]
+            for tag_name in tags:
+                # Normalize the tag name (remove spaces)
+                backend_tag_name = tag_name.replace(' ', '').lower()
+
+                # Create or retrieve the ImageTag instance
+                tag, created = ImageTag.objects.get_or_create(
+                    display_tag=tag_name,
+                    backend_tag=backend_tag_name
+                )
+
+                # Add the tag to the image submission
+                image_submission.tags.add(tag)
             return redirect('afterupload_view')  # Redirect to your success view
     else:
         form = ImageSubmissionForm()
