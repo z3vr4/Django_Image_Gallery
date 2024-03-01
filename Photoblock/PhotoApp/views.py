@@ -35,21 +35,27 @@ def upload_view(request):
                 image_submission.user = request.user.userprofile
             image_submission.save()
 
-# This part might need future debugging
+# This part needs rebuilding. yay.
+            # Normalize tags (this is wrong, takes away all spaces)
             tags_str = form.cleaned_data.get('tags', '')
-            tags = [tag.strip().lower() for tag in tags_str.split(',') if tag.strip()]
+            tags = set(tag.strip().lower() for tag in tags_str.split(',') if tag.strip())
+            # iterate over the tags set.
             for tag_name in tags:
-                # Normalize the tag name (remove spaces)
-                backend_tag_name = tag_name.replace(' ', '').lower()
-
-                # Create or retrieve the ImageTag instance
-                tag, created = ImageTag.objects.get_or_create(
-                    display_tag=tag_name,
-                    backend_tag=backend_tag_name
+                backend_tag = tag_name.replace(' ', '')  # Remove spaces from the tag
+            # this probably shouldn't a use a try/except, there has to be a cleaner way.
+            try:
+                tag = ImageTag.objects.get(backend_tag=backend_tag)
+            except ImageTag.DoesNotExist:
+                # If the ImageTag instance does not exist, create a new one
+                tag = ImageTag.objects.create(
+                    display_tag=tag_name,  # Preserve the original tag with spaces
+                    backend_tag=backend_tag
                 )
+            else:
+                # If the ImageTag instance already exists, add the ImageSubmission to its many-to-many relationship
+                tag.image_submissions.add(image_submission)
 
-                # Add the tag to the image submission
-                image_submission.tags.add(tag)
+
             return redirect('afterupload_view')  # Redirect to your success view
     else:
         form = ImageSubmissionForm()

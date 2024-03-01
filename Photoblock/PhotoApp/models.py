@@ -23,6 +23,6 @@ class Comment(models.Model):
     text = models.TextField()
 
 class ImageTag(models.Model):
-    display_tag = models.CharField(max_length=100, unique=True)  # tag name with spaces
     backend_tag = models.CharField(max_length=100, unique=True)  # backend purpose tag name (nospaces)
+    display_tag = models.CharField(max_length=100, unique=True)  # tag name with spaces
     image_submissions = models.ManyToManyField('ImageSubmission', related_name='image_tags')
